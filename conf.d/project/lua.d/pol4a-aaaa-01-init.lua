@@ -13,7 +13,7 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
- 
+
 
   NOTE: strict mode: every global variables should be prefixed by '_'
 --]]
@@ -24,20 +24,20 @@ _GlobalHalList={}
 
 -- Call when AlsaCore return HAL active list
 function _Hallist_CB (source, result, context)
-       
+
     if (AFB:status(source) < 0) then
       AFB:error (source, "--InLua-- _Hallist_CB FX result=%s", Dump_Table(result))
       return
     end
 
     -- store active HAL devices
-    _GlobalHalList= result["response"] 
+    _GlobalHalList= result["response"]
 
     -- display found HAL
     for k, v in pairs(result["response"]) do
         AFB:notice (source, "--InLua-- HAL:  api='%s' shortname='%s' devid='%s'", v["api"], v["shortname"], v["devid"])
     end
-   
+
 end
 
 -- Display receive arguments and echo them to caller
@@ -48,6 +48,6 @@ function _init_hal (source, args)
 
     -- get list of supported HAL devices
      AFB:service(source, "alsacore","hallist", {}, "_Hallist_CB", {})
-    
+
     return 0 -- happy end
 end

@@ -19,7 +19,7 @@
                     "uid": "Multimedia-Role",
                     "info": "Request a multimedia stream",
                     "privileges": "audio:multimedia",
-                    "lua": "_Temporarily_Control", 
+                    "lua": "_Temporarily_Control",
                     "args": {
                         "ctl": "Multimedia_Playback_Volume",
                         "val": 80
@@ -28,7 +28,7 @@
                 {
                     "uid": "Navigation-Role",
                     "privileges": "audio:navigation",
-                    "lua": "_Temporarily_Control", 
+                    "lua": "_Temporarily_Control",
                     "args": {
                         "ctl": "Multimedia_Playback_Volume",
                         "val": 40
@@ -37,11 +37,11 @@
                 {
                     "uid": "Telephony-Role",
                     "privileges": "audio:telephony",
-                    "lua": "_Temporarily_Control", 
+                    "lua": "_Temporarily_Control",
                     "args": {
-                        "ctl": ["Multimedia_Playback_Volume", "Navigation_Playback_Volume"], 
+                        "ctl": ["Multimedia_Playback_Volume", "Navigation_Playback_Volume"],
                         "val": 0
-                    } 
+                    }
                 },
                 {
                     "uid": "Release-Current",
