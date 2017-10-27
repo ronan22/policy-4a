@@ -3,7 +3,7 @@
 	url = https://gerrit.automotivelinux.org/gerrit/p/apps/app-templates.git
 [submodule "afb-utilities"]
 	path = afb-utilities
-	url = git@github.com:iotbzh/afb-utilities
+	url = https://github.com/iotbzh/afb-utilities.git
 [submodule "ctl-utilities"]
 	path = ctl-utilities
-	url = git@github.com:fulup-bzh/ctl-utilities
+	url = https://github.com/fulup-bzh/ctl-utilities.git
