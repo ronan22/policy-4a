@@ -195,7 +195,6 @@ STATIC void ctrlapi_request (AFB_ReqT request) {
     }
 
     ActionExecUID(request, ctrlConfig, uid, queryJ);
-    AFB_ReqSucess(request, NULL, NULL);
 
     return;
 }
