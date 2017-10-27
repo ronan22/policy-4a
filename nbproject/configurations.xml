@@ -279,6 +279,8 @@
       <item path="ctl-utilities/ctl-lib/ctl-action.c" ex="false" tool="0" flavor2="3">
         <cTool flags="1">
           <incDir>
+            <pElem>../../../opt/include/afb</pElem>
+            <pElem>ctl-utilities/ctl-lib</pElem>
             <pElem>/usr/include/json-c</pElem>
             <pElem>../../../opt/include</pElem>
             <pElem>build/ctl-utilities/ctl-lib</pElem>
@@ -288,6 +290,8 @@
       <item path="ctl-utilities/ctl-lib/ctl-config.c" ex="false" tool="0" flavor2="3">
         <cTool flags="1">
           <incDir>
+            <pElem>../../../opt/include/afb</pElem>
+            <pElem>ctl-utilities/ctl-lib</pElem>
             <pElem>/usr/include/json-c</pElem>
             <pElem>afb-utilities</pElem>
             <pElem>../../../opt/include</pElem>
@@ -301,6 +305,8 @@
             flavor2="3">
         <cTool flags="1">
           <incDir>
+            <pElem>../../../opt/include/afb</pElem>
+            <pElem>ctl-utilities/ctl-lib</pElem>
             <pElem>/usr/include/json-c</pElem>
             <pElem>../../../opt/include</pElem>
             <pElem>build/ctl-utilities/ctl-lib</pElem>
@@ -310,6 +316,8 @@
       <item path="ctl-utilities/ctl-lib/ctl-event.c" ex="false" tool="0" flavor2="3">
         <cTool flags="1">
           <incDir>
+            <pElem>../../../opt/include/afb</pElem>
+            <pElem>ctl-utilities/ctl-lib</pElem>
             <pElem>/usr/include/json-c</pElem>
             <pElem>../../../opt/include</pElem>
             <pElem>build/ctl-utilities/ctl-lib</pElem>
@@ -317,12 +325,14 @@
         </cTool>
       </item>
       <item path="ctl-utilities/ctl-lib/ctl-lua.c" ex="false" tool="0" flavor2="3">
-        <cTool flags="1">
+        <cTool flags="0">
           <incDir>
             <pElem>/usr/include/json-c</pElem>
-            <pElem>afb-utilities</pElem>
-            <pElem>/usr/include/lua5.3</pElem>
             <pElem>../../../opt/include</pElem>
+            <pElem>/usr/include/p11-kit-1</pElem>
+            <pElem>/usr/include/lua5.3</pElem>
+            <pElem>ctl-utilities/ctl-lib</pElem>
+            <pElem>afb-utilities</pElem>
             <pElem>build/ctl-utilities/ctl-lib</pElem>
           </incDir>
         </cTool>
@@ -330,6 +340,8 @@
       <item path="ctl-utilities/ctl-lib/ctl-onload.c" ex="false" tool="0" flavor2="3">
         <cTool flags="1">
           <incDir>
+            <pElem>../../../opt/include/afb</pElem>
+            <pElem>ctl-utilities/ctl-lib</pElem>
             <pElem>/usr/include/json-c</pElem>
             <pElem>../../../opt/include</pElem>
             <pElem>build/ctl-utilities/ctl-lib</pElem>
@@ -339,6 +351,8 @@
       <item path="ctl-utilities/ctl-lib/ctl-plugin.c" ex="false" tool="0" flavor2="3">
         <cTool flags="1">
           <incDir>
+            <pElem>../../../opt/include/afb</pElem>
+            <pElem>ctl-utilities/ctl-lib</pElem>
             <pElem>/usr/include/json-c</pElem>
             <pElem>afb-utilities</pElem>
             <pElem>/usr/include/lua5.3</pElem>
@@ -348,9 +362,14 @@
         </cTool>
       </item>
       <item path="ctl-utilities/ctl-lib/ctl-timer.c" ex="false" tool="0" flavor2="3">
-        <cTool flags="1">
+        <cTool flags="0">
           <incDir>
+            <pElem>/usr/include/json-c</pElem>
             <pElem>../../../opt/include</pElem>
+            <pElem>/usr/include/p11-kit-1</pElem>
+            <pElem>/usr/include/lua5.3</pElem>
+            <pElem>ctl-utilities/ctl-lib</pElem>
+            <pElem>afb-utilities</pElem>
             <pElem>build/ctl-utilities/ctl-lib</pElem>
           </incDir>
         </cTool>
@@ -386,17 +405,32 @@
       <folder path="0/pol4a-sample">
         <cTool>
           <incDir>
-            <pElem>../../../opt/include/afb</pElem>
-            <pElem>pol4a-sample</pElem>
             <pElem>/usr/include/json-c</pElem>
-            <pElem>ctl-utilities/ctl-lib</pElem>
             <pElem>../../../opt/include</pElem>
+            <pElem>/usr/include/p11-kit-1</pElem>
+            <pElem>/usr/include/lua5.3</pElem>
+            <pElem>pol4a-sample</pElem>
+            <pElem>afb-utilities</pElem>
+            <pElem>ctl-utilities/ctl-lib</pElem>
             <pElem>build/pol4a-sample</pElem>
           </incDir>
+          <preprocessorList>
+            <Elem>CONTROL_CONFIG_PATH="/home/fulup/Workspace/Audio-4a/policy-4a/conf.d/project:/home/fulup/opt/afb-controller"</Elem>
+            <Elem>CONTROL_CONFIG_POST="control"</Elem>
+            <Elem>CONTROL_CONFIG_PRE="onload"</Elem>
+            <Elem>CONTROL_DOSCRIPT_PRE="doscript"</Elem>
+            <Elem>CONTROL_MAXPATH_LEN=255</Elem>
+            <Elem>CONTROL_ONLOAD_PROFILE="onload-default"</Elem>
+            <Elem>CONTROL_PLUGIN_PATH="/home/fulup/Workspace/Audio-4a/policy-4a/build:/home/fulup/opt/afb-controller/lib/controller-plugins:/usr/lib/afb/controller-plugins/ctlplug"</Elem>
+            <Elem>CTL_PLUGIN_MAGIC=2468013579</Elem>
+            <Elem>NATIVE_LINUX</Elem>
+            <Elem>USE_API_DYN</Elem>
+            <Elem>pol4a_sample_EXPORTS</Elem>
+          </preprocessorList>
         </cTool>
       </folder>
       <item path="pol4a-sample/pol4a-binding.c" ex="false" tool="0" flavor2="3">
-        <cTool flags="1">
+        <cTool flags="0">
         </cTool>
       </item>
     </conf>

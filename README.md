@@ -1,54 +1,91 @@
-Controler AAAA(AGL Advance Audio Controler) and more.
-------------------------------------------------------------
+    Pol4A: Simple audio roles policy controller.
+------------------------------------------------------------------------
 
- * Object: Generic Controler to handle Policy,Small Business Logic, Glue in between components, ...
+ * Object: Sample Custom policy controller for audio roles
  * Status: Release Candidate
  * Author: Fulup Ar Foll fulup@iot.bzh
- * Date  : August-2017
+ * Date  : October-2017
 
 ## Functionalities:
- - Create an application dedicate controller from a JSON config file
- - Each controls (eg: navigation, multimedia, ...) is a suite of actions. When all actions succeed control is granted, if one fail control acces is denied.
+ - Create an audio simple audio policy controller from Json config and LUA scripts
+ - Each controls (eg: navigation, multimedia, ...) is a suite of actions. When all actions succeed control is granted, if one fail control access is denied.
  - Actions can either be:
    + Invocation to an other binding API, either internal or external (eg: a policy service, Alsa UCM, ...)
    + C routines from a user provider plugin (eg: policy routine, proprietary code, ...)
    + Lua script function. Lua provides access to every AGL appfw functionalities and can be extended from C user provided plugins.
 
 ## Installation
- - Controler is a native part of AGL Advance Audio Framework but may be used independently with any other service or application binder.
- - Dependencies: the only dependencies are audio-common for JSON-WRAP and Filescan-utils capabilities.
- - Controler relies on Lua-5.3, when not needed Lua might be removed at compilation time.
+ - Controller is a component of Audio-4A, this sample fully relies on AGL ctl-utilities 
+ - Dependencies: 
+    - Compilation: ctl-utilities, afb-utilities.
+    - Runtime alsa-4a, hal-4a, lua-5.3
+ - Nota: 
+     - You may choose to run Pol4A without LUA, nevertheless this sample leverage Lua scripts to implement the audio policies
+     - By default Pol4A uses API-V3(beta), it also supports API-V2; nevertheless your need API-V3 to use per control Smack protection  
 
 ## Monitoring
- - Default test HTML page expect monitoring HTML page to be accessible from /monitoring for this to work you should
+ - Default test HTML page expect monitoring to be accessible from /monitoring for this to work you should
  * place monitoring HTML pages in a well known location eg: $HOME/opt/monitoring
  * start your binder with the alias option e.g. afb-daemon --port=1234 --alias=/monitoring:/home/fulup/opt/afb-monitoring --ldpaths=. --workdir=. --roothttp=../htdocs
 
 ## Config
 
 Configuration is loaded dynamically during startup time. The controller scans CONTROL_CONFIG_PATH for a file corresponding to pattern
-"onload-bindername-xxxxx.json". When controller runs within AAAA binder it searches for "onload-audio-xxxx.json". First file found in the path the loaded
-any other files corresponding to the same pather are ignored and only generate a warning.
+"pol4a-aaaa-*.json". Where "pol4" is afb-daemon binder middle name as provided from --name=afb-pol4a when starting the binder. 
+First file found in the path the loaded any other files matching search pattern are ignored.
 
 Each bloc in the configuration file are defined with
- * label: must be provided is used either for debugging or as input for the action (eg: signal name, control name, ...)
+ * uit: mandatory, it is used either for both debug and action selection (eg: signal name, control name, ...)
  * info:  optional used for documentation purpose only
 
 Note by default controller config search path is defined at compilation time, but path might be overloaded with CONTROL_CONFIG_PATH
-environment variable. Setenv 'CONTROL_ONLOAD_PROFILE'=xxxx to overload 'onload-default-profile' initialisation sequence.
+environment.
 
 ### Config is organised in 4 sections:
 
  * metadata
+ * plugin defined C/C++ to be loaded
  * onload defines the set of action to be executed at startup time
  * control defines the set of controls with corresponding actions
  * event define the set of actions to be executed when receiving a given signal
 
-### Metadata
+### Metadata (mandatory)
 
 As today matadata is only used for documentation purpose.
  * label + version mandatory
  * info optional
+ * version
+
+```
+   "metadata": {
+        "uid": "ctl-audio-4a",
+        "info": "Basic Audio Policy Control for Audio-4a",
+        "api": "pol4a",
+        "version": "1.0"
+    },
+```
+
+### Plugin (optional)
+ 
+ Provide plugin be loaded. Plugin may either provide action used directly from Actions as defined in Json config file, or provide LUA commands
+ to boost Lua execution function. Note that every AGL application framework functions (eg: AFB_ERROR, afb-request, ...)  are usable from plugins.
+
+ Note: 
+    - controller plugin extention is .ctlso and not .so
+    - when path is not provided in config, controller search within CONTROL_PLUGIN_PATH default path as defined at binding compilation time.
+
+
+```
+    "plugins": [{
+            "label": "plugin-c-sample",
+            "info": "Simple demo C Plugin",
+            "basename": "ctl-plug-capi-sample"
+        }, {
+            "label": "sample-lua-sample",
+            "info": "Extend Lua commands in C",
+            "basename": "ctl-plug-lua2c-sample"
+        }],
+```
 
 ### OnLoad section
 

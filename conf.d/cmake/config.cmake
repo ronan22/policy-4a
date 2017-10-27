@@ -132,7 +132,7 @@ set(COMPILE_OPTIONS
 if(IS_DIRECTORY $ENV{HOME}/opt/afb-monitoring)
 set(MONITORING_ALIAS "--alias=/monitoring:$ENV{HOME}/opt/afb-monitoring")
 endif()
-set(CLOSING_MESSAGE "Debug: afb-daemon --name=afb-aaaa-pol4a --port=1234 --cntxtimeout=1 ${MONITORING_ALIAS} --ldpaths=package/lib:../../alsa-4a/build/package/lib:../../hal-sample-4a/build/package/lib --workdir=. --roothttp=../htdocs --tracereq=common --token= --verbose ")
+set(CLOSING_MESSAGE "Debug: afb-daemon --name=afb-aaaa-pol4a --port=1234 --ws-server=unix:/var/tmp/aaaa-pol4-ws/pol4 --cntxtimeout=1 ${MONITORING_ALIAS} --ldpaths=package/lib:../../alsa-4a/build/package/lib:../../hal-sample-4a/build/package/lib --workdir=. --roothttp=../htdocs --tracereq=common --token= --verbose ")
 set(PACKAGE_MESSAGE "Install widget file using in the target : afm-util install ${PROJECT_NAME}.wgt")
 
 # (BUG!!!) as PKG_CONFIG_PATH does not work [should be an env variable]
